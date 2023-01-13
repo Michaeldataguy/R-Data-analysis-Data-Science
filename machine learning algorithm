@@ -1,0 +1,113 @@
+#STEP 1: Exploring and preparing the data
+
+insurance <- read.csv("insurance.csv", stringsAsFactors = TRUE)
+str(insurance)
+summary(insurance$charges)
+hist(insurance$charges)
+View(insurance)
+table(insurance$region)
+#step 2
+#Exploring the relationship among Features - The Correlation Matrix
+datamike <- insurance[c("age","bmi","children","charges")]
+cor(datamike)
+
+#Visualizing relationships among features - The Scatterplot Matrix
+pairs(datamike)
+
+#Step 3- Training a model on the data
+#to fit a linear regression model to data in R, the lm()
+#function can be used. this is included in the stats package which
+#a base package in R.
+
+datamike <- lm(charges ~ age + children + bmi, data = insurance)
+# can also be written as 
+datamike <- lm(charges ~ ., data = insurance)
+#CALLING THE MODEL
+datamike
+#k value is the square root of your obs
+#Step 4 - Evaluating the model Performance
+summary(datamike)
+View(datamike)
+table(insurance$smoker)
+#Step 5 - Improving the model
+insurance$age2 <- insurance$age^2
+insurance$age2
+
+insurance$bmi30 <- ifelse(insurance$bmi >= 30, 1,0)
+
+ins_model2 <-lm(charges ~ age2 + children + bmi + sex + bmi30*smoker + region, 
+                data = insurance)
+summary(ins_model2)
+
+#read csv file firstly
+cvb <- read.csv("Fat_Supply_Quantity_Data.csv", stringsAsFactors = TRUE)
+summary(cvb)
+str(cvb)
+View(cvb)
+#mutate using dplyr
+make = cvb %>% select( Vegetables,Vegetable.Oils, Vegetal.Products)
+View(make)
+#apply linear regression
+peace <- lm(Vegetables~Vegetable.Oils+Vegetal.Products, data = make)
+summary(peace)
+#create a dataframe
+vc <- data.frame(Vegetable.Oils = c(22,23),
+                 Vegetal.Products = c(17,20))
+#improve the model
+vb = predict(peace,vc)
+print(vb)
+aq <- as.data.frame(vb)
+cor(aq)
+
+insurance <- read.csv("insurance.csv", stringsAsFactors = TRUE)
+str(insurance)
+summary(insurance$charges)
+hist(insurance$charges)
+View(insurance)
+table(insurance$region)
+library(dplyr)
+run = insurance %>% select(age,sex,bmi,children,charges)
+ran <- lm(age~., data = run)
+summary(ran)
+
+ushousing <- read.csv("USA_Housing.csv", stringsAsFactors = TRUE)
+View(ushousing)
+str(ushousing)
+summary(ushousing)
+library('dplyr')
+rain = ushousing %>% select(Avg..Area.Income,Avg..Area.House.Age,Avg..Area.Number.of.Rooms,
+                            Avg..Area.Number.of.Bedrooms,Area.Population,Price)
+rlan <- lm(Price~., data = rain)
+summary(rlan)
+c <- data.frame(Avg..Area.Income = c(79545.46,80175.75),
+                Avg..Area.House.Age=c(4.423672,6.002900),
+                Avg..Area.Number.of.Rooms=c(6.730821,7.009188),
+                Avg..Area.Number.of.Bedrooms=c(3.09,5.13),
+                Area.Population = c(23086.801,40173.072))
+xc <-predict(rlan,c)
+print(xc)
+summary(xc)
+table(xc)
+View(rain)
+#improving model
+rlan$Price <- rain$Price/3
+rlann <- ifesle(rain >= 6.10, 1,0)
+rlan <- lm(Price~., data = rain)
+summary(rain)
+
+rap <- read.csv('mtcars.csv', stringsAsFactors = TRUE )
+str(rap)
+summary(rap)
+library(dplyr)
+pairs(rap)
+View(rap)
+legendd <- rap %>% select( mpg,cyl,qsec,gear,carb)
+View(legendd)
+summary(legendd)
+believe <- data.frame(mpg = c(15,17,20),
+                      cyl = c(4,5,8),
+                      qsec = c(14,16,18),
+                      gear = c(3,5,4),
+                      carb = c(2,4,6))
+be <- as.factor(believe)
+a <- predict(legendd,be)

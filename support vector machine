@@ -1,0 +1,103 @@
+letters <- read.csv("letterdata.csv", stringsAsFactor = TRUE)
+View(letters)
+str(letters)
+
+letters_train <- letters[1:16000,]
+letters_test <- letters[16001:20000,]
+install.packages('kernlab')
+library(kernlab)
+letter_classifer <- ksvm(letter ~ ., data = letters_train, 
+                         kernel = "vanilladot")
+
+letter_classifer
+
+#during classification analysis, we apply the model with the trained data, predict with test data.
+letter_predictions <- predict(letter_classifer, letters_test)
+
+head(letter_predictions)
+
+table(letter_predictions, letters_test$letter)
+
+agreement <- letter_predictions == letters_test$letter
+
+table(agreement)
+
+prop.table(table(agreement))
+
+letter_predictions_rbf <- ksvm(letter ~ ., data = letters_train,
+                               kernel = "rbfdot")
+
+letter_predictions_rbf <- predict(letter_predictions_rbf, letters_test)
+
+agreement_rbf <- letter_predictions_rbf == letters_test$letter
+
+table(agreement_rbf)
+
+prop.table(table(agreement_rbf))
+
+# PRACTICE DATA 2
+letter_test <- letters[1:1600,]
+letter_train <- letters[1600:20000,]
+View(letter_test)
+#applying vanilladot
+lettermercy <- ksvm(letter ~., data = letter_train, kernel = 'vanilladot')
+lettermercy
+mercy_prediction <- predict(lettermercy,letter_test)
+head(mercy_prediction)
+table(mercy_prediction, letter_test$letter)
+act <- mercy_prediction == letter_test$letter
+table(act)  
+prop.table(table(act))  
+#applying rbfdot for prediction
+mercy_predict <- ksvm(letter ~., data = letters_train, kernel = 'rbfdot')
+mercy <- predict(mercy_predict, letter_test)
+head(mercy)
+preach <- mercy == letter_test$letter
+table(preach)
+prop.table(table(preach))
+# DATA 3
+#read into the file
+we <- read.csv('2017 NAICS Definition.csv', stringsAsFactors = TRUE)
+str(we)
+View(we)
+#test and train the dataset
+we_test <- we[1:90,]
+we_train <- we[91:181,]
+#apply kernel trick on the trained data.
+we_live <- ksvm(X2017.NAICS.US.Title~., data = we_train, kernel = 'vanilladot')
+we_live
+#predict your result
+live_prediction <- predict(we_live,we_test)
+head(live_prediction)
+livin <- live_prediction == we_test$X2017.NAICS.US.Title
+table(livin)
+prop.table(table(livin))
+# DATA 4
+age <- read.csv('QVI_transaction_data.csv', stringsAsFactors = TRUE)
+str(age)
+View(age)
+age_test <- age[1:132417,]
+age_train <- age[132418:264836,]
+age_down <- ksvm(PROD_NAME~., data = age_train, kernel = 'vanilladot')
+age_down
+age_predixxt <- predict(age_down,age_test)
+age_predixxt
+ageing <- age_predixxt == age_test$PROD_NAME
+table(ageing)
+prop.table(table(ageing))
+
+#data 5
+beans <- read.csv('CarPrice_assignment.csv', stringsAsFactors = TRUE)
+str(beans)
+class(beans)
+typeof(beans)
+View(beans)
+beans_test <- beans[1:102,]
+beans_train <- beans[103:205,]
+beneign <- ksvm(citympg~., data = beans_train, kernel = 'rbfdot')
+beneign
+task <- predict(beneign,beans_test)
+task
+asking <- task == beans_test$citympg
+table(asking)
+prop.table(table(asking))

@@ -1,3 +1,648 @@
+#Combining rows and column in a data frame
+evangelica <- data.frame(name = c('are','ace','john'),
+                         gender = c('female','male','male'),
+                         age = c(24,24,23),
+                         major = c('ML','database','algorithm'))
+evangelica
+
+
+population <- data.frame(Name = c("iyi",'ade','ire'),
+                         gender = c("male","male","male"),
+                         age = c(23,23,23),
+                         major = c("finance","statistics","ML"))
+population
+
+#RBIND AND CBIND
+a <- c(12,20,22,24,67,77)
+b <- c(22,34,44,3,22,2)
+
+ace <- cbind(a,b)
+ace
+class(ace)
+
+df1 <- data.frame(a = c(12,23,23,33,44),
+                  b = c(33,4,33,44,22),
+                  c = c(34,23,33,33,4))
+d<- c(34,44,44,55,444)
+
+df10 <- cbind(df1,d)
+df10
+
+c <- data.frame(e = c(33,455,55,99,100))
+df11 <- rbind(df10,c)
+#create two data frame
+df01 <- data.frame(ab = c(12,23,23,23,33,33),
+                   aa = c(23,44,55,44,55,55),
+                   ca = c(44,55,77,88,90,60))
+
+df02 <- data.frame(cv = c(22,34,34,45,44,77),
+                   cc = c(33,44,33,33,44,33),
+                   rt = c(33,66,77,55,66,66))
+
+df03 <- cbind(df01,df02)
+df03
+
+#rbind
+a <- c(11, 33, 43, 44, 55)
+b <- c(57, 37, 85, 34, 24)
+
+ab1 <- rbind(a,b)
+ab1
+d <- c(23,33,44,55,66)
+df_new <- rbind(ab1, d)
+df_new
+
+
+ff <- data.frame(a=c(11, 13, 23, 34, 54),
+                 b=c(79, 37, 83, 43, 24),
+                 c=c(34, 63, 66, 56, 58))
+d <- c(11, 14, 16,55,67)
+e <- c(34, 35, 36,33,45) 
+dff <- rbind(ff,d,e)
+dff
+
+fg <- data.frame(r = c(23,33,44,45,66,77),
+                 c = c(33,66,66,33,55,6),
+                 c = c(23,44,4,555,55,56))
+fw <- c(33,'4m',33)
+ww <- c(67,'33m','3m')
+def <- rbind(fg,fw,ww)
+def
+
+#function
+#A function is an object you can call. Basically, it is a machine with internal logic that takes a group of inputs (parameters or arguments) and returns a value as output.
+library(readr)
+
+faren <- function(c){9/5*c+32}
+faren(45)
+
+minus <- function(aw,ca){
+  aw - ca
+}
+minus(44,4)
+minus(44,45)
+
+add <- function(x, y) {
+  x + y
+}
+multiply <- function(x,y) {
+  x * y
+}
+addx <- function(x,y){
+  x + y * x
+}
+addx(3,3)
+add(3,6)
+add(4,4)
+multiply(3,3)
+multiply(c(3,3),3)
+add(c(2,3),4)
+add(as.Date("2014-06-01"),1)
+#to get the current date use sys.Date()
+Sys.Date()
+
+#Conditional and if else statement 
+#if statement and elif statement
+p <-33
+q <- 333
+
+if(q > p) {
+  print("p is greater than q")
+}
+
+a <- 33
+aa <- 34
+
+if (a < aa) {
+  print("a is less than aa")
+}
+
+z <- 13
+v <- 10
+
+if (z < v) { 
+  print("z < is not less than v")
+}else if(v < z){
+  print("v is less than z")
+}
+
+
+a <- 123
+b <- 222
+if (a < b) {
+  print("a is less than b")
+}
+
+a <- 33
+b <- 33
+if (b > a) {
+  print("b is greater than a")
+}
+
+a <- 33
+b <- 33
+if (b > a) {
+  print("b is greater than a")
+} else if (a == b) {
+  print ("a and b are equal")
+}
+
+
+a <- 200
+b <-33
+if(b > a){
+  print("b is greater than a")
+}else {print("b is not greater than a")}
+
+
+#while loop
+v <- 1
+while (v < 8) {
+  print(v)
+  v <- v + 1
+}
+
+a <- 2
+while (a <6){
+  print(a)
+}
+}
+
+c <- 4
+while (c < 12) {
+  print(c)
+  c  <- c + 1
+}
+#for statement
+x <- 1:5
+total <- 0
+for (element in x) total <- total + element
+total
+
+u <- 1:10
+cece <- 2
+for (math in u) cece <- cece + math
+cece
+
+eight <- 1:18
+ven <- 2
+for (eye in eight) ven <- ven + eye
+ven
+
+tall <- 1:17
+short <- 5
+for (weight in tall) short <- short + weight
+short
+
+df23 <- data.frame(a = 1:5,
+                   b = letters[1:5])
+df23
+ff2 <- data.frame(a = 5:7,
+                  b = letters[2:4])
+                   
+ff2                
+
+
+d <- 4
+while(d < 15){
+  print(d)
+  d <- d + 1
+}
+#classwork - write me a while loop
+
+i <- 4
+while (i < 14) {
+  print(i)
+  i <- i + 1
+}
+
+#And operator
+b <- 200
+v <- 33
+d <- 500
+
+if (b > v & d > b) {
+  print("Both conditions are true")
+}
+#OR operator
+a <- 200
+b <- 33
+c <- 500
+
+if (a > b | a > c) {
+  print("At least one of the conditions is true")
+}
+
+#Break statement
+i <-1
+while(i <6){
+  print(i) 
+  i <- i +1
+  if(i ==4) {
+    break }
+}
+
+m <- 3
+while(m < 13){
+  print(m)
+  m = m + 1
+  if(m == 7){
+    break
+  }
+}
+
+c <- 1
+while (c < 10) {
+  print(c)
+  c <- c + 1
+  if (c == 8) {
+    break}
+}
+# next break and while loop
+b <- 0
+while (b <8) {
+  print(b)
+  b <- b + 1
+  if(b == 4){
+    next
+  }
+  else if 
+    (b == 6)
+    {break}
+}
+
+v <- 2
+while (v < 14) {
+  print(v)
+  v <- v + 1
+  if(v == 7){
+    next
+  }
+  else if
+  (v == 12)
+  {break}
+}
+ 
+
+#next statement
+i <-0
+while(i < 6) {
+  i <- i + 1
+  if(i == 3) {
+    next
+  }
+  print(i)}
+
+dice <- 1
+while (dice <= 6) {
+  dice <- dice + 1
+  if (dice < 6) {
+    print("No win")
+  } else {
+    print("game won")
+  }}
+
+#for loop
+#A for loop is used for iterating over a sequence:
+
+for (x in 1:10) {
+  print(x)
+}
+
+fruits <- list("apple", "banana", "cherry")
+
+for (x in fruits) {
+  print(x)
+}
+   
+fruitmuch <- list("apple", "banana", "cherry",'mango','pineapple')
+
+for (x in fruitmuch) {
+  if (x == "cherry") {
+    break
+  }
+  print(x)
+}
+
+company_name <- c('theencouragement','dressx','mikediamonds','mikefood')
+for (big in company_name) {
+  if(big == 'mikediamonds'){
+    break
+  }
+  print(big)
+}
+music <- c("soul","rap","hip hop","jazz")
+for (mking in music){
+  if(mking == "rap"){
+    next
+  }
+  if(mking == "hip hop"){
+    break
+  }
+  print(mking)
+}
+#class work write me a for loop
+for (i in c(3, 6, 23, 19, 0, 21))
+{
+  if (i == 0)
+  {
+    next
+  }
+  print(i)
+}
+print('maximum Loop')
+
+v <- c(11,12,23,32,34,42,44,47,53)
+for (num in v){
+  if(num == 15){
+    next
+  }
+  if(num == 32){
+    break
+  }
+  print(num)
+}
+
+for (a in c(5,10,15,20,22,24,25))
+{
+  if (a == 20)
+  {
+    next
+  }
+  print(a)
+} 
+  print('maximum limit')
+  
+
+
+
+calc <- function(x,y,type) {
+  if (type == 'add') {
+    x + y
+  } else if (type == "minus") {
+    x - y
+  } else if (type == 'multiply'){
+    x * y
+  } else if (type == 'divide'){
+    x/y
+  } else {
+    stop('unknown type of operation')
+  }
+}
+calc(2,3,'divide')
+calc(2,3, 'minus')
+calc(3,4, 'plus')
+calc(c(2,3), c(3,8), 'divide')
+
+math <- function(c,z,y,type){
+  if (type == 'divide'){
+    c/z/y
+  }
+  else if (type == 'bodmas'){
+    c*z/y
+  }
+}
+math(10,5,2,'divide')
+math(33,3,3,'bodmas')
+
+live <- 50:100
+for(heart in live){
+  if(heart == 65){
+    next}
+  else if(heart == 67){
+    break
+  }
+  print(heart)
+}
+#the for loop
+#cat function is use to concatenate several objects
+datascience <- c('regression','clustering','ANN','svm')
+for (algorithm in datascience){
+  print(datascience)
+}
+for (algorithm in datascience) {cat('improving model', algorithm, '\n')}
+
+
+for (ac in 0:3){
+  if(ac == 2){
+    next
+  }
+  cat('be yourself', ac, '\n')
+}
+number <- 1:10
+for (numeric in number){
+  if(numeric == 4){
+    next
+  }
+  else if(numeric == 8){
+    break
+  }
+  print(numeric)
+  
+}    
+for (numeric in number){cat("choose", numeric, '\n')}
+#
+
+
+#LOADING AND WRITNG INTO DISK
+#working directory
+getwd()
+#setwd - is use to change working directory like changing the location of the file saved
+setwd("c:/Users/HP/Desktop")
+
+c <- read.csv("june1.csv")
+c
+View(c)
+str(c)
+
+dd <- read.csv("may31.csv")
+View(dd)
+#converting into a dataframe
+c <- as.data.frame(dd)
+c
+View(c)
+
+#reading into an excel file
+aa <- read.csv("premier league data set.csv")
+bb <- read.csv("netflix_dataset.csv")
+cc <- read.csv("amazon dataset.csv")
+View(cc)
+
+
+client_name <- data.frame(name =c('mr josh','mr emeka', "mr nelson"),
+                          jobtype = c("remotely","remotely","work venue"),
+                          age = c(34,44,45),
+                          status = c("married","single","divorced"))
+                   
+client_name
+typeof(client_name)
+str(client_name)
+class(client_name)
+#str - structure of dataset
+#typeof - content of dataset 
+#class - about the structure of the dataset
+
+write.csv(client_name,"C:/Users/User/Documents\\client_name.csv", row.names = FALSE)
+
+company <- data.frame(name =c('King Forex tower','King boutique', "king organic foods"),
+                      year_founded = c(2019,2023,2022),
+                      capital = c("$10,000","$5000","$20,000"))
+write.csv(company,"C:/Users/User/Documents\\comapny.csv", row.names = FALSE)
+                   
+
+meditations <- data.frame (affrimation = c("i","am","abundance"),
+                   manifestation = c("havereceived","abundantly","excellenntly"))
+
+write.csv(meditations,"C:/Users/User/Documents\\ace.csv", row.names = FALSE)
+ace
+
+online_class <- data.frame(class1 = c("regression","clustering"),
+                   class2 = c("Artificial Intelligence","deep learning"),
+                   class3 = c("supervised learning", "unsupervised learning"))
+write.csv(online_class,"C:/Users/User/Documents\\online_class.csv", row.names = FALSE)
+View(online_class)
+
+
+surgeon_report <- data.frame(save = c('live with gratitude','believe in self'),
+                             internal = c("mind is power","life is good"))
+                        
+surgery <-as.matrix(surgeon_report)
+surge <- as.matrix.data.frame(surgeon_report)
+surgery
+surge
+
+
+# converting vector to matrix
+num <- c(1,2,3,4,5,6,7,8,9,10,11,12)
+is.vector(num)
+dim(num) <- c(4,3)
+num
+
+amount <- c('$400','$500','$700','$100','$1000','$2000','$3000','$2000','$4000')
+is.vector(amount)
+is.list(amount)
+is.array(amount)
+is.character(amount)
+is.integer(amount)
+dim(amount) <- c(3,3)
+amount
+View(amount)
+
+
+
+#DPLYR
+#dplyr is a package in R use for data manipulation
+# mutate() adds new variables that are functions of existing variables
+# select() picks variables based on their names.
+# filter() picks cases based on their values.
+# summarise() reduces multiple values down to a single summary.
+# arrange() changes the ordering of the rows.
+#data manipulaton
+install.packages('dplyr')
+library(dplyr)
+
+#install hflights package which contains the hflights data
+install.packages("hflights")
+
+#package call for hflights
+library(hflights)
+View(hflights)
+str()
+summary()
+typeof()
+class()
+mean()
+
+#creating flight1 which contains the hflights data from hflight package
+flight1<-hflights::hflights
+View(flight1)
+flight <- hflights
+View(flight)
+#select using dplyr (Projection)
+
+flight_data<- select(flight1,FlightNum,ArrTime,DepTime)
+head(flight_data)
+View(flight_data)
+#using column index in select statement
+flight_data<-select(flight1,1,2,3,4)
+flight_data
+#retriving all columns that contains Time, this is doing a pattern search on the columns
+flight_data<-select(flight1, contains("time"))
+View(flight_data)
+#using select with a range
+flight_data<-select(flight1, Year:ArrTime)
+head(flight_data)
+
+#using column index range in select
+flight_data<-select(flight1, 2:10)
+View(flight_data)
+#using start_with and end_with function in dplyr with select statement
+flight_data<-select(flight1, starts_with("Day"), ends_with("Time"))
+head(flight_data)
+
+library(dplyr)
+View(flight_data)
+summary(flight1$Year)
+
+flight_data <- select(flight1, -Year)
+head(flight1)
+View(flight_data)
+#Using Piping
+flight_data <- select(flight1, Year, ArrTime, DepTime)
+View(flight_data)
+xx <- flight1 %>% select(Year, ArrTime, DepTime)
+head(xx)
+tail(xx)
+#mutate functioN:
+#mutate generates a psuedocolumn for the expression
+str(flight1)
+flight_data<- mutate(flight1, ActualGroundTime=ActualElapsedTime-AirTime)
+View(flight_data)
+str(flight_data)
+flight_data<- mutate(flight1, Averagespeed=Distance/AirTime*60)
+flight_data <-flight1 %>% mutate(Averagespeed=Distance/AirTime*60)
+flight_data
+flight_data<- mutate(flight1, TotalTaxi=TaxiIn+TaxiOut)
+flight_data<- mutate(flight1, TimeLoss=ArrDelay+DepDelay)
+
+#filter: this function helps to restrict or filter data based on conditions
+flight_data<- filter(flight1, Distance>3000)
+View(flight_data)
+range(flight_data$Distance)
+
+table(flight1$UniqueCarrier)
+flight_data<- filter(flight1, UniqueCarrier %in% c("OO", "US", "AA"))
+View(flight_data)
+#Use table to know the unique values in a dataset
+table(flight1$UniqueCarrier)
+table(flight_data$UniqueCarrier)
+
+flight_data<- filter(flight1, TaxiIn+TaxiOut>AirTime)
+flight_data<- filter(flight1, Distance>3000)
+flight_data<- filter(flight1, DepTime<500|ArrTime>2200) #filter flights that arrived later than 10pm(2200)
+flight_data<- filter(flight1, Dest=="JFK", Cancelled==1)
+View(flight_data)
+#Arrange help order the dataset in ascending or descending order
+#Arrange the flight1 dataset with respect to DepDelay column
+flight_data<- arrange(flight1, desc(DepDelay))
+flight_data<- arrange(flight1, -DepDelay) #orderby descending
+View(flight_data)
+range(flight_data$DepDelay)
+flight_data<- arrange(flight1, DepDelay+ArrDelay)
+
+#Summarize-------aggregate function
+
+flight_data<- summarise(flight1, min_dist=min(Distance), 
+                        max_dist=max(Distance))
+flight_data
+flight_data<- summarise(flight1, earliest=min(ArrDelay, na.rm = T), 
+                        average= mean(ArrDelay, na.rm = T), 
+                        latest= max(ArrDelay, na.rm = T), 
+                        SD= sd(ArrDelay, na.rm = T))
+
+
+tidy r
+
 library(tidyr)
 
 tidy_df = data.frame(Sno = c(1:10), 

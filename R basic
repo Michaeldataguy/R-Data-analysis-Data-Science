@@ -1,0 +1,55 @@
+library(tidyr)
+
+tidy_df = data.frame(Sno = c(1:10), 
+                     Group.1 = c(23,345,76,212,88,199,72,35,90,265), 
+                     Group.2 = c(177,89,66,334,90,101,178,233,45,200), 
+                     Group.3 = c(29,101,239,289,176,320,89,109,199,56))
+
+tidy_df
+str(tidy_df)
+View(tidy_df)
+
+#Gather function;- it takes multiple column and gather into a key value
+tidy-longer <- gather
+tidy_long <- gather(tidy_df, Group, Frequency, Group.1 : Group.3)
+tidy_long
+View(tidy_long)
+
+
+#Seperate functions helps you to convert your long data to wide data
+#Seperate functions is use to split or divide a column into two
+
+tidy_sep <- separate(tidy_long, Group, c("Allignment", "Number"))
+tidy_sep
+View(tidy_sep)
+
+#unite function is use to bring back the seperated column into its original form
+
+tidy_unite <- unite(tidy_sep, Group, c("Allotment", "Number"), sep = "_")
+tidy_unite
+View(tidy_unite)
+
+#Spread function to reshape a long data format to wide data format.
+
+tidy_spread <- spread(tidy_unite, Group, Frequency)
+tidy_spread
+View(tidy_spread)
+
+
+#how to handle missing value
+install.packages(airquality)
+library(airquality)
+View(airquality)
+#find missing value
+is.na(airquality)
+is.na(airquality)
+#count missing value
+sum(is.na(airquality))
+sum(is.na(airquality))
+#omit missing value
+b <- na.omit(airquality)
+View(b)
+#removing missing value in a column
+mean(airquality$Ozone)
+mean(airquality$Ozone, na.rm = TRUE)
+mean(airquality$Ozone, na.rm = TRUE)

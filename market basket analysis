@@ -1,0 +1,86 @@
+install.packages("arules")
+library(arules)
+setwd( "C:/Users/User/Documents")
+getwd()
+groceries <- read.transactions("groceries.csv", sep = ",")
+summary(groceries)
+inspect(groceries[1:5])
+inspect(groceries[2:4])
+inspect(groceries[3:10])
+itemFrequency(groceries)
+itemFrequencyPlot(glow,support = 0.1,confidence = 0.05)
+itemFrequencyPlot(glow,support = 0.4, confidence = 0.02)
+itemFrequencyPlot(groceries,support = 0.1)
+itemFrequencyPlot(groceries,support = 0.01,confidence = 0.05)
+itemFrequencyPlot(groceries,confidence = 0.05)
+itemFrequencyPlot(groceries,support = 0.1, confidence = 0.05)
+itemFrequencyPlot(groceries,topN = 20)
+itemFrequencyPlot(groceries,topN = 15)
+itemFrequencyPlot(groceries,topN = 10)
+itemFrequencyPlot(groceries,topN = 50)
+itemFrequencyPlot(groceries, topN = 40)
+image(groceries[1:5])
+image(groceries[2:7])
+image(sample(groceries,100))
+image(sample(groceries,40))
+image(sample(groceries,80))
+image(sample(groceries,50))
+apriori(groceries)
+apriori(glow)
+
+gloww <- apriori(groceries,
+                 parameter = list(support = 0.003,
+                                  confidence =0.17,
+                                  minlen = 2))
+groceryrules <- apriori(groceries,
+                        parameter = list(support = 0.013,
+                                         confidence = 0.017,
+                                         minlen = 2))
+groceryrules
+summary(groceryrules)
+summary(gloww)
+grocecerules <- apriori(groceries,parameter = list(support= 0.009,
+                                                   confidence = 0.35,
+                                                   minlen = 2)) 
+inspect(gloww[1:4])
+inspect(groceryrules[1:3])
+inspect(groceryrules[1:10])
+inspect(sort(groceryrules, by = "lift")[1:5])
+inspect(sort(gloww, by = 'lift')[2:5])
+inspect(sort(groceryrules, by = "lift")[1:10])
+
+
+berryrules <- subset(groceryrules, items %in% "berries")
+inspect(berryrules)
+mlrules <- subset(groceryrules, items %in% "bottled beer")
+inspect(mlrules)
+milkyrules <- subset(groceryrules, items %in% "whole milk")
+inspect(milkyrules)
+mikky <- subset(gloww, items %in% 'flour')
+inspect(mikky)
+salt <- subset(gloww, items %in% 'sugar')
+inspect(salt)
+fruits <- subset(groceryrules, items %in% "tropical fruit")
+inspect(fruits)
+vegann <- subset(groceryrules, items %in% "other vegetables")
+inspect(vegann)
+write(groceryrules, file = "groceryrules.csv", 
+      sep = ",", quote = TRUE, row.names = FALSE)
+groceryrules_df <- as(groceryrules, "data.frame")
+str(groceryrules_df)
+View(groceryrules_df)
+
+write(gloww, file = 'gloww.csv', sep = ',', quote = TRUE, row.names = FALSE)
+glow_df <- as(gloww,'data.frame')
+View(glow_df)
+str(glow_df)
+write(grocecerules, file = "grocecerules.csv", sep = ",", quote = TRUE, row.names = FALSE)
+View(grocecerules_df)
+
+write(glow, file = 'gloww.csv', sep = ',', quote = TRUE, row.names = FALSE)
+write(gloww, file = 'gloww.csv', sep = ',', quote = TRUE, row.names = FALSE)
+
+df1 <- data.frame(values = rnorm(3), group = letters[1:3],
+                  row.names = paste0("RowName", 1:3))
+df1
+print(df1, row.names = FALSE)

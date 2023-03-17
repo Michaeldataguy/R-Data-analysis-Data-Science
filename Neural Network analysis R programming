@@ -1,0 +1,222 @@
+
+challenge <- read.csv('challenger.csv')
+str(challenge)
+View(challenge)
+#Normalize
+normalize <- function(x){
+  return(x-min(x))/(max(x)- min(x))
+}
+challenge1 <- as.data.frame(lapply(challenge, normalize))
+summary(challenge1$temperature)
+#Testing and Training of network
+challenge_test <- challenge1[1:13,]
+challenge_train <- challenge1[14:23,]
+library(neuralnet)
+View(challenge_train)
+challenge_model <- neuralnet(temperature ~ pressure+launch_id+distress_ct+o_ring_ct, data = challenge_train)
+plot(challenge_model)
+challenger_result <- compute(challenge_model,challenge_test[1:13,])
+challenger_result
+predict_cha <- challenger_result$net.result
+predict_cha
+cor(predict_cha,challenge_test$temperature)
+
+date <- read.csv("binary.csv")
+str(date)
+normalize <- function(x){return(x-min(x))/max(x)-min(x)}
+date1 <- as.data.frame(lapply(date, normalize))
+summary(date1$gpa)
+hist(date1$gpa)
+#testing and training of data
+date_test <- date1[1:200,]
+date_train <- date1[201:400,]
+library(neuralnet)
+View(date_train)
+#creating a model
+bin <- neuralnet(gre ~., data = date_train)
+plot(bin)
+bin_result <- compute(bin, date_train[1:200,])
+#predict
+pre_date <- bin_result$net.result
+pre_date
+#correlation
+cor(pre_date,date_test$gre)
+
+
+belive <- read.csv('CarPrice_assignment.csv', stringsAsFactors = TRUE)
+str(belive)
+normalize <- function(x)(x - min(x))/max(x)- min(x)
+summary(belive$citympg)
+live_test <- belive[1:102,]
+live_train <- belive[103:205,]
+library(neuralnet)
+live_model <- neuralnet(citympg ~ highwaympg+price+carwidth+carlength+carheight+horsepower, data = live_train)
+plot(live_model)
+limodel <- compute(live_model, live_test)
+lifemodel <- limodel$net.result
+lifemodel
+cor(lifemodel,live_test$price)
+#2
+live_model2 <- neuralnet(citympg ~ highwaympg+price+carwidth+carlength+carheight+horsepower, data = live_train, hidden = 4)
+plot(live_model2)
+
+
+mush <- read.csv('usedcars.csv')
+str(mush)
+normalize <- function(x){return(x-min(x)/max(x)-min(x))}
+mush_test <- mush[1:75,]
+mush_train <- mush[76:150,]
+mushneural <- neuralnet(year ~ price+mileage, data = mush_train)
+plot(mushneural)
+compmush <- compute(mushneural,mush_test)
+compmush
+#add hidden layer
+mneural <- neuralnet(year ~ price+mileage, data = mush_train, hidden = 3)
+plot(mneural)
+
+
+
+wines <- read.csv('redwines.csv')
+str(wines)
+View(wines)
+normalize <- function(x){
+  return(x-min(x)/max(x)-min(x))
+}
+whitewine <- as.data.frame(lapply(wines, normalize))
+wine_test <- wines[1:789,]
+wine_train <- wines[790:1599,]
+View(wine_train)
+library(neuralnet)
+wine_model <- neuralnet(quality ~ fixed.acidity+residual.sugar+pH+alcohol, data = wine_train)
+plot(wine_model)
+wines_result <- compute(wine_model, wine_test[1:789,])
+wines_result
+redwines <- wines_result$net.result
+redwines
+cor(redwines,wine_test$density)
+
+wine_model2 <- neuralnet(quality ~ fixed.acidity+residual.sugar+pH+alcohol, data = wine_train, hidden = 1)
+plot(wine_model2)
+live_winee <- compute(wine_model2, wines[1:789])
+live_winee
+cor(live_winee,wine_test$alcohol)
+
+concrete <- read.csv(file.choose())
+concrete <- read.csv("concrete.csv")
+str(concrete)
+View(concrete)
+
+normalize <- function(x){
+  return(x-min(x))/max(x)-min(x))
+}
+concrete_norm <- as.data.frame(lapply(concrete, normalize))
+summary(concrete_norm$strength)
+summary(concrete$strength)
+summary(concrete_norm$water)
+
+concrete_train <- concrete_norm[1:773,]
+concrete_test <- concrete_norm[774:1030,]
+concrete_normme <- concrete_norm[1:774,]
+concrete_normme <- concrete_norm[775:1030,]
+
+library(neuralnet)
+cmodel <- neuralnet(cement ~ strength,water, data = concrete_train)
+concrete_model <- neuralnet(strength ~ cement + slag + ash +
+                              water + superplastic + coarseagg +
+                              fineagg + age, data = concrete_train)
+plot(concrete_model) 
+model_results <- compute(concrete_model, concrete_test[1:8])
+model_results
+
+predicted_strength <- model_results$net.result
+predicted_strength
+
+cor(predicted_strength, concrete_test$strength)
+
+concrete_model2 <- neuralnet(strength ~ cement + slag + ash +
+                              water + superplastic + coarseagg +
+                              fineagg + age, data = concrete_train,
+                             hidden = 5)
+
+plot(concrete_model2)
+
+model_results2 <- compute(concrete_model2, concrete_test[1:8])
+
+
+predicted_strength2 <- model_results2$net.result
+predicted_strength2
+cor(predicted_strength2, concrete_test$strength)
+View(concrete)
+concrete_model3 <- neuralnet(cement ~ strength + ash + water + superplastic +
+                               coarseagg + fineagg, data = concrete_train,
+                             hidden = 4)
+plot(concrete_model3)
+
+#sir when do we know when to plot a graph using neural network
+binary <- read.csv("binary.csv")
+View(binary)
+str(binary)
+cor(binary)
+
+pairs(binary)
+library(psych)
+pairs.panels(binary)
+library(PerformanceAnalytics)
+binary_corr <- chart.Correlation(binary,histogram = TRUE, pch = 19)
+##heatmap
+binary_col <- colorRampPalette(c('blue','white','red')) (20)
+binary_cor <- cor(binary)
+heatmap_corr <- heatmap(x = binary_cor, col = binary_col, symm = TRUE)
+#normalize
+normalize <- function(x){
+  return((x-min(x))/ (max(x)-min(x)))
+}
+
+binary_norm <- as.data.frame(lapply(binary, normalize))
+View(binary_norm)
+summary(binary)
+#train and test
+binary_train <- binary_norm[1:280,]
+binary_test <- binary_norm[281:400,]
+install.packages(neuralnet)
+library(neuralnet)
+#create model
+binary_model <- neuralnet(admit~.,data = binary_train)
+binary_model
+plot(binary_model)
+#testing model
+bimodelresults <- compute(binary_model, binary_test[2:4])
+bimodelresults
+
+predicted_admit <- bimodelresults$net.result
+predicted_admit
+#evaluate model perfomance
+cor(predicted_admit, binary_test$admit)
+#improve model by increaing hidden layer
+binary_model2 <- neuralnet(admit ~., data = binary_train, hidden = 5)
+plot(binary_model2)
+
+bimodelresults2 <- compute(binary_model2, binary_test[2:4])
+
+predicted_admit2 <- bimodelresults2$net.result
+predicted_admit2
+cor(predicted_admit2, binary_test$admit)
+
+
+age <- read.csv('australia_largest_companies.csv', stringsAsFactors = TRUE)
+summary(age)
+normalize <- function(x){ return(x-min(x)/max(x)-min(x))}
+View(age)
+age_test <- age[1:21,]
+age_train <- age[22:42,]
+library(neuralnet)
+sand <- neuralnet(global_rank ~ sales_billion+profits_billion+assets_billion+
+                  market_value_billion, data = age_train)
+plot(sand)
+sandy <- neuralnet(sales_billion ~ global_rank,profits_billion+assets_billion+
+                     maeket_value_billion, data = age_train)
+#compute the algorithm
+san <- compute(sand,age_test[1:21,])
+#predict with netresult 
+sandpre <- san$net.result
+sandpre
